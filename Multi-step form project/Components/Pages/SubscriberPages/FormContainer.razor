@@ -1,0 +1,43 @@
+﻿@page "/"
+@using Microsoft.EntityFrameworkCore
+@using Multi_step_form_project.Modules
+@inject IDbContextFactory<Multi_step_form_projectContext> DbFactory
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<PageTitle>Personal Information</PageTitle>
+@if(Step == 1)
+{
+	<PersonalInfo />
+}
+else if (Step == 2)
+{
+	<SelectYourPlan/>
+}
+
+<div class="next-and-prev">
+	<div class="next-and-prev-button-container">
+		<button class="go-back-button" @onclick="Prev">Go Back</button>
+		<button class="next-step-button" @onclick="Next">Next Step</button>
+	</div>
+</div>
+
+@code {
+	[CascadingParameter]
+	private Subscriber? Subscriber { get; set; } 
+
+	public int Step { get; set; } = 1;
+
+	public void Next()
+	{
+		Step++;
+		StateHasChanged();
+	}
+
+	public void Prev()
+	{
+		Step--;
+		StateHasChanged();
+		
+	}
+}

@@ -1,0 +1,63 @@
+﻿@using Multi_step_form_project.Modules
+@inject NavigationManager NavigationManager
+
+<PageTitle>Select Your Plan</PageTitle>
+<div class="mobile-header">
+</div>
+<div class="page-numbers">
+	<div class="page-number">1</div>
+	<div class="page-number" style="@pageNumberColor">2</div>
+	<div class="page-number">3</div>
+	<div class="page-number">4</div>
+</div>
+<div class="white-container">
+	<h2 class="Section-title">Select Your Plan</h2>
+	<p class="additional-info"> You have the option of monthly or yearly billing.</p>
+	<div class="plan-option" id="arcade-choice">
+		<img src="/images/icon-arcade.svg"/>
+		<div class="plan-description">
+			<p class="plan-title">
+				Arcade
+			</p>
+			<p class="plan-amount">
+				$9/mo
+				<span class="yearly-version">2 months free</span>
+			</p>
+		</div>
+	</div>
+
+	<div class="plan-option" id="advanced-choice">
+		<img src="/images/icon-advanced.svg" />
+		<div class="plan-description">
+			<p class="plan-title">
+				Advanced
+			</p>
+			<p class="plan-amount">
+				$12/mo
+				<span class="yearly-version">2 months free</span>
+			</p>
+		</div>
+	</div>
+	<div class="plan-option" id="pro-choice">
+		<img src="/images/icon-pro.svg" />
+		<div class="plan-description">
+			<p class="plan-title">
+				Pro
+			</p>
+			<p class="plan-amount">
+				$15/mo
+				<span class="yearly-version">2 months free</span>
+			</p>
+		</div>
+	</div>
+</div>
+
+
+
+@code {
+	[CascadingParameter]
+	private Subscriber? Subscriber { get; set; }
+	public string pageNumberColor = "background-color:hsl(206, 94%, 87%);color:hsl(213, 96%, 18%)";
+
+
+}

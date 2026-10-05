@@ -1,0 +1,50 @@
+@page "/subscribers/details"
+@using Microsoft.EntityFrameworkCore
+@using Multi_step_form_project.Modules
+@inject IDbContextFactory<Multi_step_form_projectContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h2>Subscriber</h2>
+    <hr />
+    @if (subscriber is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">Name</dt>
+            <dd class="col-sm-10">@subscriber.Name</dd>
+            <dt class="col-sm-2">Email</dt>
+            <dd class="col-sm-10">@subscriber.Email</dd>
+            <dt class="col-sm-2">PhoneNumber</dt>
+            <dd class="col-sm-10">@subscriber.PhoneNumber</dd>
+        </dl>
+        <div>
+            <a href="@($"/subscribers/edit?id={subscriber.Id}")">Edit</a> |
+            <a href="@($"/subscribers")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    private Subscriber? subscriber;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        subscriber = await context.Subscriber.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (subscriber is null)
+        {
+            NavigationManager.NotFound();
+        }
+    }
+}
