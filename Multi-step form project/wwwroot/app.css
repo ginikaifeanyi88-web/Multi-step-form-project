@@ -156,6 +156,10 @@ input::placeholder {
     margin-top:9px;
 }
 
+.plan-option:hover{
+    cursor:pointer;
+}
+
 .plan-description{
     display: flex;
     flex-direction: column;

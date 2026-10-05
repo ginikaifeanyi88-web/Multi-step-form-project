@@ -1,5 +1,6 @@
 ﻿@using Multi_step_form_project.Modules
 @inject NavigationManager NavigationManager
+@rendermode InteractiveServer
 
 <PageTitle>Select Your Plan</PageTitle>
 <div class="mobile-header">
@@ -13,7 +14,7 @@
 <div class="white-container">
 	<h2 class="Section-title">Select Your Plan</h2>
 	<p class="additional-info"> You have the option of monthly or yearly billing.</p>
-	<div class="plan-option" id="arcade-choice">
+	<div class="plan-option" id="arcade-choice" @onclick="HandleArcade" style="@ArcadeStyles">
 		<img src="/images/icon-arcade.svg"/>
 		<div class="plan-description">
 			<p class="plan-title">
@@ -26,7 +27,7 @@
 		</div>
 	</div>
 
-	<div class="plan-option" id="advanced-choice">
+	<div class="plan-option" id="advanced-choice" @onclick="HandleAdvanced" style="@AdvancedStyles">
 		<img src="/images/icon-advanced.svg" />
 		<div class="plan-description">
 			<p class="plan-title">
@@ -38,7 +39,7 @@
 			</p>
 		</div>
 	</div>
-	<div class="plan-option" id="pro-choice">
+	<div class="plan-option" id="pro-choice" @onclick="HandlePro" style="@ProStyles">
 		<img src="/images/icon-pro.svg" />
 		<div class="plan-description">
 			<p class="plan-title">
@@ -58,6 +59,55 @@
 	[CascadingParameter]
 	private Subscriber? Subscriber { get; set; }
 	public string pageNumberColor = "background-color:hsl(206, 94%, 87%);color:hsl(213, 96%, 18%)";
+	public string OptionSelected = "";
+	public string ArcadeStyles = "";
+	public string AdvancedStyles = "";
+	public string ProStyles = "";
+	protected override void OnInitialized()
+	{
+		HandleOptionSelected();
+	}
 
+	public void HandleArcade()
+	{
+		OptionSelected = "Arcade";
+		Subscriber.PlanSelected = OptionSelected;
+		HandleOptionSelected();
+	}
+	public void HandleAdvanced()
+	{
+		OptionSelected = "Advanced";
+		Subscriber.PlanSelected = OptionSelected;
+		HandleOptionSelected();
+	}
+	public void HandlePro()
+	{
+		OptionSelected = "Pro";
+		Subscriber.PlanSelected = OptionSelected;
+		HandleOptionSelected();
+	}
+
+	public void HandleOptionSelected()
+	{
+		if (Subscriber.PlanSelected == "Arcade")
+		{
+			ArcadeStyles = "background-color:hsl(225, 33%, 95%);border:hsl(213, 96%, 18%)";
+			AdvancedStyles = "";
+			ProStyles = "";
+		}
+		if (Subscriber.PlanSelected == "Advanced")
+		{
+			ArcadeStyles = "";
+			AdvancedStyles = "background-color:hsl(225, 33%, 95%);border:hsl(213, 96%, 18%)";
+			ProStyles = "";
+		}
+		if (Subscriber.PlanSelected == "Pro")
+		{
+
+			ArcadeStyles = "";
+			AdvancedStyles = "";
+			ProStyles = "background-color:hsl(225, 33%, 95%);border:hsl(213, 96%, 18%)";
+		}
+	}
 
 }
