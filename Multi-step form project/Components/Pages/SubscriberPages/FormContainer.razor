@@ -8,7 +8,7 @@
 <PageTitle>Personal Information</PageTitle>
 @if(Step == 1)
 {
-	<PersonalInfo />
+	<PersonalInfo requiredMessage=@aRequiredMessage/>
 }
 else if (Step == 2)
 {
@@ -27,17 +27,34 @@ else if (Step == 2)
 	private Subscriber? Subscriber { get; set; } 
 
 	public int Step { get; set; } = 1;
+	public string aRequiredMessage = "";
 
 	public void Next()
 	{
-		Step++;
-		StateHasChanged();
+		if (Step ==1 && (Subscriber.Name==null||Subscriber.Email==null||Subscriber.PhoneNumber ==null))
+		{
+			aRequiredMessage = "Fill in the required fields!";
+		}else
+		{
+
+			aRequiredMessage = "";
+			Step++;
+			StateHasChanged();
+			
+		}
 	}
 
 	public void Prev()
 	{
-		Step--;
-		StateHasChanged();
+		if (Step == 1)
+		{
+
+		}
+		else
+		{
+			Step--;
+			StateHasChanged();
+		}
 		
 	}
 }

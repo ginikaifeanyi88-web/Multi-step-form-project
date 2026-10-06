@@ -1,6 +1,7 @@
 ﻿
 @using Multi_step_form_project.Modules
 @inject NavigationManager NavigationManager
+@rendermode InteractiveServer
 
 <PageTitle>Personal Information</PageTitle>
 <div class="mobile-header">
@@ -14,10 +15,11 @@
 </div>
 <div class="white-container">
 	<h2 class="Section-title">Personal info</h2>
+	<p class="required-fields">@requiredMessage</p>
 	<p class="additional-info">  Please provide your name, email address, and phone number.</p>
 	<div class="name-container">
 		<label for="name">Name:</label>
-		<InputText id="name" @bind-Value="Subscriber.Name" class="input-text-box" placeholder="e.g. Stephen King"/>
+		<InputText id="name" @bind-Value="Subscriber.Name" class="input-text-box" placeholder="e.g. Stephen King" required/>
 	</div>
 	<div class="email-container">
 		<label for="email">Email:</label>
@@ -32,6 +34,9 @@
 @code {
 	[CascadingParameter]
 	private Subscriber? Subscriber { get; set; }
+
+	[Parameter]
+	public string requiredMessage { get; set; }
 	public string pageNumberColor = "background-color:hsl(206, 94%, 87%);color:hsl(213, 96%, 18%)";
 
 

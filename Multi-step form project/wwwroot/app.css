@@ -44,9 +44,11 @@ h1:focus {
     border-radius: 10px;
     box-shadow: 0px 10px 10px hsl(219, 35%, 86%);
 }
-
+.required-fields{
+    color:red;
+}
 .additional-info {
-    margin-top:15px;
+    margin-top: 15px;
     color: hsl(229, 24%, 87%);
 }
 
