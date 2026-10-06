@@ -21,7 +21,7 @@
 				Arcade
 			</p>
 			<p class="plan-amount">
-				$9/mo
+				$<span>@arcadePrice</span>/<span>@perMoOrYr</span>
 				<span class="yearly-version">2 months free</span>
 			</p>
 		</div>
@@ -34,7 +34,7 @@
 				Advanced
 			</p>
 			<p class="plan-amount">
-				$12/mo
+				$<span>@advancedPrice</span>/<span>@perMoOrYr</span>
 				<span class="yearly-version">2 months free</span>
 			</p>
 		</div>
@@ -46,7 +46,7 @@
 				Pro
 			</p>
 			<p class="plan-amount">
-				$15/mo
+				$<span>@proPrice</span>/<span>@perMoOrYr</span>
 				<span class="yearly-version">2 months free</span>
 			</p>
 		</div>
@@ -60,8 +60,12 @@
 		</label>
 		<p class="Yearly-title">Yearly</p>
 	</div>
-	<p>@Subscriber.MonthlyOrYearly</p>
+
+	@*Testing code*@
+
+	@* <p>@Subscriber.MonthlyOrYearly</p>
 	<p>@MonthlyOrYearly</p>
+	<p>@Subscriber.MonthlyCost</p> *@
 </div>
 
 
@@ -75,10 +79,19 @@
 	public string AdvancedStyles = "";
 	public string ProStyles = "";
 	public bool MonthlyOrYearly;
+	public int arcadePrice = 9;
+	public int advancedPrice = 12;
+	public int proPrice = 15;
+	public string perMoOrYr = "mo";
 	protected override void OnInitialized()
 	{
 		HandleOptionSelected();
 		HandleYearOrMonthlySelected();
+		HandleMonthlyAndYearly();
+		if (Subscriber.PlanSelected == null)
+		{
+			HandleArcade();
+		}
 
 
 	}
@@ -109,12 +122,14 @@
 			ArcadeStyles = "background-color:hsl(225, 33%, 95%);border:1px solid hsl(213, 96%, 18%)";
 			AdvancedStyles = "";
 			ProStyles = "";
+			setMonthlyAmount(arcadePrice);
 		}
 		if (Subscriber.PlanSelected == "Advanced")
 		{
 			ArcadeStyles = "";
 			AdvancedStyles = "background-color:hsl(225, 33%, 95%);border:1px solid hsl(213, 96%, 18%)";
 			ProStyles = "";
+			setMonthlyAmount(advancedPrice);
 		}
 		if (Subscriber.PlanSelected == "Pro")
 		{
@@ -122,6 +137,7 @@
 			ArcadeStyles = "";
 			AdvancedStyles = "";
 			ProStyles = "background-color:hsl(225, 33%, 95%);border:1px solid hsl(213, 96%, 18%)";
+			setMonthlyAmount(proPrice);
 		}
 	}
 
@@ -130,12 +146,19 @@
 		if (MonthlyOrYearly == false)
 		{
 			Subscriber.MonthlyOrYearly = "Monthly";
-			
+			arcadePrice = 9;
+			advancedPrice = 12;
+			proPrice = 15;
+			perMoOrYr = "mo";
 		} else if (MonthlyOrYearly == true)
 		{
 			Subscriber.MonthlyOrYearly = "Yearly";
-		
+			arcadePrice = arcadePrice * 10;
+			advancedPrice = advancedPrice * 10;
+			proPrice = proPrice * 10;
+			perMoOrYr = "yr";
 		}
+		HandleOptionSelected();
 	}
 	public void HandleYearOrMonthlySelected()
 	{
@@ -147,7 +170,14 @@
 		else if (Subscriber.MonthlyOrYearly == "Yearly")
 		{
 			MonthlyOrYearly = true;
+
 		}
 	}
+
+	public void setMonthlyAmount(int monthlyAmount)
+	{
+		Subscriber.MonthlyCost = monthlyAmount;
+	}
+
 
 }
