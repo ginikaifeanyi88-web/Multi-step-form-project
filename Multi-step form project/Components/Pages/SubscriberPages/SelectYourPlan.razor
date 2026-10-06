@@ -51,6 +51,17 @@
 			</p>
 		</div>
 	</div>
+	<div class="monthly-or-yearly-container">
+		<p class="Monthly-title">Monthly</p>
+			
+		<label class="switch">
+			<InputCheckbox @bind-Value="MonthlyOrYearly" @bind-Value:after="HandleMonthlyAndYearly"/>
+			<span class="slider round"></span>
+		</label>
+		<p class="Yearly-title">Yearly</p>
+	</div>
+	<p>@Subscriber.MonthlyOrYearly</p>
+	<p>@MonthlyOrYearly</p>
 </div>
 
 
@@ -63,9 +74,13 @@
 	public string ArcadeStyles = "";
 	public string AdvancedStyles = "";
 	public string ProStyles = "";
+	public bool MonthlyOrYearly;
 	protected override void OnInitialized()
 	{
 		HandleOptionSelected();
+		HandleYearOrMonthlySelected();
+
+
 	}
 
 	public void HandleArcade()
@@ -107,6 +122,31 @@
 			ArcadeStyles = "";
 			AdvancedStyles = "";
 			ProStyles = "background-color:hsl(225, 33%, 95%);border:1px solid hsl(213, 96%, 18%)";
+		}
+	}
+
+	public void HandleMonthlyAndYearly()
+	{
+		if (MonthlyOrYearly == false)
+		{
+			Subscriber.MonthlyOrYearly = "Monthly";
+			
+		} else if (MonthlyOrYearly == true)
+		{
+			Subscriber.MonthlyOrYearly = "Yearly";
+		
+		}
+	}
+	public void HandleYearOrMonthlySelected()
+	{
+		if (Subscriber.MonthlyOrYearly == "Monthly")
+		{
+			MonthlyOrYearly = false; 
+
+		}
+		else if (Subscriber.MonthlyOrYearly == "Yearly")
+		{
+			MonthlyOrYearly = true;
 		}
 	}
 
