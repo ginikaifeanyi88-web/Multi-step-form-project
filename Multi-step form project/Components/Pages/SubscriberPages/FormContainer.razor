@@ -1,6 +1,9 @@
 ﻿@page "/"
 @using Microsoft.EntityFrameworkCore
 @using Multi_step_form_project.Modules
+@using System.ComponentModel.DataAnnotations;
+@using PhoneNumbers;
+@using PhoneNumbers.Extensions;
 @inject IDbContextFactory<Multi_step_form_projectContext> DbFactory
 @inject NavigationManager NavigationManager
 @rendermode InteractiveServer
@@ -12,7 +15,7 @@
 }
 else if (Step == 2)
 {
-	<SelectYourPlan/>
+	<SelectYourPlan requiredMessage="@aRequiredMessage2"/>
 }
 
 <div class="next-and-prev">
@@ -28,19 +31,56 @@ else if (Step == 2)
 
 	public int Step { get; set; } = 1;
 	public string aRequiredMessage = "";
+	public string aRequiredMessage2 = "";
+	public EmailAddressAttribute email = new EmailAddressAttribute();
+	//static PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.GetInstance();
+	// public bool abool = PhoneNumbers.Extensions.PhoneNumber.TryParse("jsss", "US", out PhoneNumbers.PhoneNumber var);
 
 	public void Next()
 	{
-		if (Step ==1 && (Subscriber.Name==null||Subscriber.Email==null||Subscriber.PhoneNumber ==null))
+		// Step 1 checks
+		if (Step == 1 && (Subscriber.Name == null || Subscriber.Email == null || Subscriber.PhoneNumber == null || Subscriber.Name == "" || Subscriber.Email == "" || Subscriber.PhoneNumber == ""))
 		{
 			aRequiredMessage = "Fill in the required fields!";
-		}else
+		}
+
+		if (Step == 1 && (checkNameString(Subscriber.Name) == false))
+		{
+
+			aRequiredMessage = "Invalid name or not filled in";
+
+		}
+		else if (Step == 1 && (email.IsValid(Subscriber.Email) == false))
+		{
+			aRequiredMessage = "email format incorrect";
+		}
+		else if (Step == 1 && PhoneNumbers.Extensions.PhoneNumber.TryParseValid(Subscriber.PhoneNumber, out PhoneNumbers.PhoneNumber var)==false)
+		{
+			aRequiredMessage = "Must be a valid phone number";
+
+		}
+		else 
 		{
 
 			aRequiredMessage = "";
+			var phoneNumberUtil = PhoneNumberUtil.GetInstance();
+			PhoneNumbers.Extensions.PhoneNumber.TryParseValid(Subscriber.PhoneNumber, out PhoneNumbers.PhoneNumber yo);
+			Subscriber.PhoneNumber = phoneNumberUtil.Format(yo, PhoneNumberFormat.INTERNATIONAL);
+
 			Step++;
 			StateHasChanged();
 			
+		}
+		// Step 2 checks
+		if (Step == 2 && (Subscriber.PlanSelected == null))
+		{
+			aRequiredMessage2 = "Select a plan!";
+		}
+		else if (Step == 2 && (Subscriber.PlanSelected != null))
+		{
+			aRequiredMessage2 = "";
+			Step++;
+			StateHasChanged();
 		}
 	}
 
@@ -55,6 +95,25 @@ else if (Step == 2)
 			Step--;
 			StateHasChanged();
 		}
-		
+
+	}
+	private bool checkNameString(string wordOrPhrase)
+	{
+		bool itIsFine = false;
+		foreach (char character in wordOrPhrase)
+		{
+			if (((int)character >= 65 && (int)character <= 90) || ((int)character >= 97 && (int)character <= 122))
+			{
+				itIsFine = true;
+			}
+			else
+			{
+
+			}
+
+
+
+		}
+		return itIsFine;
 	}
 }

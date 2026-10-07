@@ -13,6 +13,7 @@
 </div>
 <div class="white-container">
 	<h2 class="Section-title">Select Your Plan</h2>
+	<p class="required-fields">@requiredMessage</p>
 	<p class="additional-info"> You have the option of monthly or yearly billing.</p>
 	<div class="plan-option" id="arcade-choice" @onclick="HandleArcade" style="@ArcadeStyles">
 		<img src="/images/icon-arcade.svg"/>
@@ -83,17 +84,15 @@
 	public int advancedPrice = 12;
 	public int proPrice = 15;
 	public string perMoOrYr = "mo";
+
+	[Parameter]
+	public string requiredMessage { get; set; }
+
 	protected override void OnInitialized()
 	{
 		HandleOptionSelected();
 		HandleYearOrMonthlySelected();
 		HandleMonthlyAndYearly();
-		if (Subscriber.PlanSelected == null)
-		{
-			HandleArcade();
-		}
-
-
 	}
 
 	public void HandleArcade()

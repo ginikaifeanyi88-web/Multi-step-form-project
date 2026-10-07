@@ -1,7 +1,9 @@
 ﻿
 @using Multi_step_form_project.Modules
+@using PhoneNumbers;
 @inject NavigationManager NavigationManager
 @rendermode InteractiveServer
+
 
 <PageTitle>Personal Information</PageTitle>
 <div class="mobile-header">
@@ -29,6 +31,8 @@
 		<label for="phonenumber">PhoneNumber:</label>
 		<InputText id="phonenumber" @bind-Value="Subscriber.PhoneNumber" class="input-text-box" placeholder=" e.g. +1 234 567 890" />
 	</div>
+	@* Testing code *@
+	@* <p>@PhoneNumberUtil.GetInstance().IsValidNumber(PhoneNumberUtil.GetInstance().Parse("+26772981057", "US"))</p> *@
 </div>
 
 @code {
