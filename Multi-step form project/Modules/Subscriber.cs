@@ -13,7 +13,7 @@ namespace Multi_step_form_project.Modules
         public bool OnlineService { get; set; }
         public bool LargerStorage { get; set; }
         public bool CustomizableProfile {  get; set; }
-        public int MonthlyCost { get; set; }
+        public int TotalCost { get; set; }
 
     }
 }

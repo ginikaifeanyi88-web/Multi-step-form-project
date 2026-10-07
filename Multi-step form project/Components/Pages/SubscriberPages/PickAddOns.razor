@@ -1,0 +1,32 @@
+﻿@using Multi_step_form_project.Modules
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+
+<PageTitle>Pick Add Ons</PageTitle>
+<div class="mobile-header">
+</div>
+<div class="page-numbers">
+	<div class="page-number">1</div>
+	<div class="page-number">2</div>
+	<div class="page-number" style="@pageNumberColor">3</div>
+	<div class="page-number">4</div>
+</div>
+<div class="white-container">
+	<h2 class="Section-title">Personal info</h2>
+	@* <p class="required-fields">@requiredMessage</p> *@
+	<p class="additional-info">Add-ons help enhance your gaming experience.</p>
+	<p>@Subscriber.Name</p>
+	<p>@Subscriber.Email</p>
+	<p>@Subscriber.PhoneNumber</p>
+	<p>@Subscriber.PlanSelected</p>
+	<p>@Subscriber.TotalCost</p>
+
+</div>
+
+@code {
+	[CascadingParameter]
+	private Subscriber? Subscriber { get; set; }
+	public string pageNumberColor = "background-color:hsl(206, 94%, 87%);color:hsl(213, 96%, 18%)";
+
+}
