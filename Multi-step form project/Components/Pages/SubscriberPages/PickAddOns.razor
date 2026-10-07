@@ -14,13 +14,12 @@
 </div>
 <div class="white-container">
 	<h2 class="Section-title">Personal info</h2>
-	@* <p class="required-fields">@requiredMessage</p> *@
 	<p class="additional-info">Add-ons help enhance your gaming experience.</p>
 	<div class="plan-option" id="online-service" @onclick="OnlineServiceClicked" style="@OnlineStyles">
 		<InputCheckbox class="addon-checkbox" @bind-Value="OnlineServiceChecked" @bind-Value:after="HandleOnlineService" />
 		<div class="plan-description">
 			<p class="plan-title">
-				Online Servce
+				Online Service
 			</p>
 			<p class="addon-description">
 				Access to multiplayer games.
@@ -35,28 +34,35 @@
 		<InputCheckbox class="addon-checkbox" @bind-Value="LargerStorageChecked" @bind-Value:after="HandleLargerStorage" />
 		<div class="plan-description">
 			<p class="plan-title">
-				Online Servce
+				Larger Storage
 			</p>
 			<p class="addon-description">
-				Access to multiplayer games.
+				Extra 1TB of cloud save.
 			</p>
 		</div>
 		<p class="addon-amount">
 			+$<span>@LargerStorageAmount</span>/<span>@perMoOrYr</span>
 		</p>
 	</div>
-@* 	<p>@Subscriber.Name</p>
-	<p>@Subscriber.Email</p>
-	<p>@Subscriber.PhoneNumber</p>
-	<p>@Subscriber.PlanSelected</p> *@
-	<p>@Subscriber.TotalCost</p>
+
+	<div class="plan-option" id="customizable-profile" @onclick="CustomizableProfileClicked" style="@CustomizableStyles">
+		<InputCheckbox class="addon-checkbox" @bind-Value="CustomizableProfileChecked" @bind-Value:after="HandleCustomizableProfile" />
+		<div class="plan-description">
+			<p class="plan-title">
+				Customizable Profile
+			</p>
+			<p class="addon-description">
+				Custom theme on your profile.
+			</p>
+		</div>
+		<p class="addon-amount">
+			+$<span>@CustomizableProfileAmount</span>/<span>@perMoOrYr</span>
+		</p>
+	</div>
+
 	<p>@Subscriber.OnlineService</p>
 	<p>@Subscriber.LargerStorage</p>
-	<p>@Subscriber.Name</p>
-	<p>@Subscriber.Email</p>
-	<p>@Subscriber.PhoneNumber</p>
-	<p>@Subscriber.PlanSelected</p>
-	<p>@Subscriber.TotalCost</p>
+	<p>@Subscriber.CustomizableProfile</p>
 
 
 </div>
@@ -69,15 +75,19 @@
 	public int OnlineServiceAmount;
 	public bool LargerStorageChecked;
 	public int LargerStorageAmount;
+	public bool CustomizableProfileChecked;
+	public int CustomizableProfileAmount;
 	public string perMoOrYr;
 	public string OnlineStyles;
 	public string LargerStyles;
+	public string CustomizableStyles;
 	protected override void OnInitialized()
 	{
 
 		HandleMonthlyOrYearly();
 		OnlineStylesIntializer();
 		LargerStylesIntializer();
+		CustomizableStylesIntializer();
 	}
 
 	private void HandleOnlineService()
@@ -174,6 +184,49 @@
 		{
 			LargerStorageChecked = false;
 		    LargerStyles = "";
+		}
+	}
+
+	
+	private void HandleCustomizableProfile()
+	{
+		if (CustomizableProfileChecked == true)
+		{
+			Subscriber.CustomizableProfile = 1;
+		}
+		else if (CustomizableProfileChecked == false)
+		{
+			Subscriber.CustomizableProfile = 0;
+		}
+	}
+
+	private void CustomizableProfileClicked()
+	{
+		if (CustomizableProfileChecked == true)
+		{
+			CustomizableProfileChecked = false;
+			HandleCustomizableProfile();
+			CustomizableStyles = "";
+		}
+		else if (CustomizableProfileChecked == false)
+		{
+			CustomizableProfileChecked = true;
+			HandleCustomizableProfile();
+			CustomizableStyles = "background-color:hsl(225, 33%, 95%);border:1px solid hsl(213, 96%, 18%)";
+		}
+	}
+
+	private void CustomizableStylesIntializer()
+	{
+		if (Subscriber.CustomizableProfile == 1)
+		{
+			CustomizableProfileChecked = true;
+			CustomizableStyles = "background-color:hsl(225, 33%, 95%);border:1px solid hsl(213, 96%, 18%)";
+		}
+		else
+		{
+			CustomizableProfileChecked = false;
+			CustomizableStyles = "";
 		}
 	}
 
