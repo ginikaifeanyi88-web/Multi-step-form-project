@@ -1,0 +1,172 @@
+﻿@using Multi_step_form_project.Modules
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+
+<PageTitle>Pick Add Ons</PageTitle>
+<div class="mobile-header">
+</div>
+<div class="page-numbers">
+	<div class="page-number">1</div>
+	<div class="page-number">2</div>
+	<div class="page-number" style="@pageNumberColor">3</div>
+	<div class="page-number">4</div>
+</div>
+<div class="white-container">
+	<h2 class="Section-title">Personal info</h2>
+	@* <p class="required-fields">@requiredMessage</p> *@
+	<p class="additional-info">Add-ons help enhance your gaming experience.</p>
+	<div class="plan-option" id="online-service" @onclick="OnlineServiceClicked" style="@OnlineStyles">
+		<InputCheckbox class="addon-checkbox" @bind-Value="OnlineServiceChecked" @bind-Value:after="HandleOnlineService" />
+		<div class="plan-description">
+			<p class="plan-title">
+				Online Servce
+			</p>
+			<p class="addon-description">
+				Access to multiplayer games.
+			</p>
+		</div>
+		<p class="addon-amount">
+			+$<span>@OnlineServiceAmount</span>/<span>@perMoOrYr</span>
+		</p>
+	</div>
+
+	<div class="plan-option" id="larger-storage" @onclick="LargerStorageClicked" style="@LargerStyles">
+		<InputCheckbox class="addon-checkbox" @bind-Value="LargerStorageChecked" @bind-Value:after="HandleLargerStorage" />
+		<div class="plan-description">
+			<p class="plan-title">
+				Online Servce
+			</p>
+			<p class="addon-description">
+				Access to multiplayer games.
+			</p>
+		</div>
+		<p class="addon-amount">
+			+$<span>@LargerStorageAmount</span>/<span>@perMoOrYr</span>
+		</p>
+	</div>
+@* 	<p>@Subscriber.Name</p>
+	<p>@Subscriber.Email</p>
+	<p>@Subscriber.PhoneNumber</p>
+	<p>@Subscriber.PlanSelected</p> *@
+	<p>@Subscriber.TotalCost</p>
+	<p>@Subscriber.OnlineService</p>
+	<p>@Subscriber.LargerStorage</p>
+</div>
+
+@code {
+	[CascadingParameter]
+	private Subscriber? Subscriber { get; set; }
+	public string pageNumberColor = "background-color:hsl(206, 94%, 87%);color:hsl(213, 96%, 18%)";
+	public bool OnlineServiceChecked;
+	public int OnlineServiceAmount;
+	public bool LargerStorageChecked;
+	public int LargerStorageAmount;
+	public string perMoOrYr;
+	public string OnlineStyles;
+	public string LargerStyles;
+	protected override void OnInitialized()
+	{
+
+		HandleMonthlyOrYearly();
+		OnlineStylesIntializer();
+		LargerStylesIntializer();
+	}
+
+	private void HandleOnlineService()
+	{
+		if (OnlineServiceChecked== true)
+		{
+			Subscriber.OnlineService = 1;
+		} else if (OnlineServiceChecked == false)
+		{
+			Subscriber.OnlineService = 0;
+		}
+	}
+	public void HandleMonthlyOrYearly()
+	{
+		if (Subscriber.MonthlyOrYearly == "Monthly")
+		{
+			OnlineServiceAmount = 1;
+			LargerStorageAmount = 2;
+			perMoOrYr = "mo";
+		}
+		else if (Subscriber.MonthlyOrYearly == "Yearly")
+		{
+			OnlineServiceAmount = 1*10;
+			LargerStorageAmount = 2*10;
+			perMoOrYr = "yr";
+		}
+	}
+
+	private void OnlineServiceClicked()
+	{
+		if (OnlineServiceChecked == true)
+		{
+			OnlineServiceChecked = false;
+			HandleOnlineService();
+			OnlineStyles = "";
+		}
+		else if (OnlineServiceChecked == false)
+		{
+			OnlineServiceChecked = true;
+			HandleOnlineService();	
+			OnlineStyles = "background-color:hsl(225, 33%, 95%);border:1px solid hsl(213, 96%, 18%)";
+		}
+	}
+	private void OnlineStylesIntializer()
+	{
+		if (Subscriber.OnlineService == 1)
+		{
+			OnlineServiceChecked = true;
+			OnlineStyles = "background-color:hsl(225, 33%, 95%);border:1px solid hsl(213, 96%, 18%)";
+		} else
+		{
+			OnlineServiceChecked = false;
+			OnlineStyles = "";
+		}
+	}
+
+
+	private void HandleLargerStorage()
+	{
+		if (LargerStorageChecked == true)
+		{
+			Subscriber.LargerStorage = 1;
+		}
+		else if (LargerStorageChecked == false)
+		{
+			Subscriber.LargerStorage = 0;
+		}
+	}
+
+	private void LargerStorageClicked()
+	{
+		if (LargerStorageChecked == true)
+		{
+			LargerStorageChecked = false;
+			HandleLargerStorage();
+			LargerStyles = "";
+		}
+		else if (LargerStorageChecked == false)
+		{
+			LargerStorageChecked = true;
+			HandleLargerStorage();
+			LargerStyles = "background-color:hsl(225, 33%, 95%);border:1px solid hsl(213, 96%, 18%)";
+		}
+	}
+
+	private void LargerStylesIntializer()
+	{
+		if (Subscriber.LargerStorage == 1)
+		{
+			LargerStorageChecked = true;
+			LargerStyles = "background-color:hsl(225, 33%, 95%);border:1px solid hsl(213, 96%, 18%)";
+		}
+		else
+		{
+			LargerStorageChecked = false;
+		    LargerStyles = "";
+		}
+	}
+}
