@@ -39,48 +39,39 @@ else if (Step == 2)
 	public void Next()
 	{
 		// Step 1 checks
-		if (Step == 1 && (Subscriber.Name == null || Subscriber.Email == null || Subscriber.PhoneNumber == null || Subscriber.Name == "" || Subscriber.Email == "" || Subscriber.PhoneNumber == ""))
-		{
-			aRequiredMessage = "Fill in the required fields!";
-		}
 
-		if (Step == 1 && (checkNameString(Subscriber.Name) == false))
+		if (Step == 1 && (Subscriber.Name == null||checkNameString(Subscriber.Name) == false))
 		{
 
 			aRequiredMessage = "Invalid name or not filled in";
 
 		}
-		else if (Step == 1 && (email.IsValid(Subscriber.Email) == false))
+		else if (Step == 1 && (Subscriber.Email==null||(email.IsValid(Subscriber.Email) == false)))
 		{
 			aRequiredMessage = "email format incorrect";
 		}
-		else if (Step == 1 && PhoneNumbers.Extensions.PhoneNumber.TryParseValid(Subscriber.PhoneNumber, out PhoneNumbers.PhoneNumber var)==false)
+		else if (Step == 1 && (Subscriber.PhoneNumber==null || PhoneNumbers.Extensions.PhoneNumber.TryParseValid(Subscriber.PhoneNumber, out PhoneNumbers.PhoneNumber var)==false))
 		{
 			aRequiredMessage = "Must be a valid phone number";
 
 		}
-		else 
+		// Step 2 checks
+		else if (Step == 2 && (Subscriber.PlanSelected == null))
+		{
+			aRequiredMessage2 = "Select a plan!";
+		}
+		else
 		{
 
 			aRequiredMessage = "";
+			aRequiredMessage2 = "";
 			var phoneNumberUtil = PhoneNumberUtil.GetInstance();
 			PhoneNumbers.Extensions.PhoneNumber.TryParseValid(Subscriber.PhoneNumber, out PhoneNumbers.PhoneNumber yo);
 			Subscriber.PhoneNumber = phoneNumberUtil.Format(yo, PhoneNumberFormat.INTERNATIONAL);
 
 			Step++;
 			StateHasChanged();
-			
-		}
-		// Step 2 checks
-		if (Step == 2 && (Subscriber.PlanSelected == null))
-		{
-			aRequiredMessage2 = "Select a plan!";
-		}
-		else if (Step == 2 && (Subscriber.PlanSelected != null))
-		{
-			aRequiredMessage2 = "";
-			Step++;
-			StateHasChanged();
+
 		}
 	}
 
@@ -95,6 +86,7 @@ else if (Step == 2)
 			Step--;
 			StateHasChanged();
 		}
+
 
 	}
 	private bool checkNameString(string wordOrPhrase)

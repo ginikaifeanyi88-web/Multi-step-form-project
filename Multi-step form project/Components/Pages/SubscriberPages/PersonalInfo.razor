@@ -21,15 +21,15 @@
 	<p class="additional-info">  Please provide your name, email address, and phone number.</p>
 	<div class="name-container">
 		<label for="name">Name:</label>
-		<InputText id="name" @bind-Value="Subscriber.Name" class="input-text-box" placeholder="e.g. Stephen King" required/>
+		<InputText id="name" @bind-Value="Subscriber.Name"  class="input-text-box" placeholder="e.g. Stephen King" required/>
 	</div>
 	<div class="email-container">
 		<label for="email">Email:</label>
-		<InputText id="email" @bind-Value="Subscriber.Email" class="input-text-box" placeholder="e.g. stephenking@lorem.com"/>
+		<InputText id="email" @bind-Value="Subscriber.Email"class="input-text-box" placeholder="e.g. stephenking@lorem.com" />
 	</div>
 	<div class="phone-number-container">
 		<label for="phonenumber">PhoneNumber:</label>
-		<InputText id="phonenumber" @bind-Value="Subscriber.PhoneNumber" class="input-text-box" placeholder=" e.g. +1 234 567 890" />
+		<InputText id="phonenumber" @bind-Value="Subscriber.PhoneNumber"  class="input-text-box" placeholder=" e.g. +1 234 567 890" />
 	</div>
 	@* Testing code *@
 	@* <p>@PhoneNumberUtil.GetInstance().IsValidNumber(PhoneNumberUtil.GetInstance().Parse("+26772981057", "US"))</p> *@
@@ -42,6 +42,5 @@
 	[Parameter]
 	public string requiredMessage { get; set; }
 	public string pageNumberColor = "background-color:hsl(206, 94%, 87%);color:hsl(213, 96%, 18%)";
-
 
 }
