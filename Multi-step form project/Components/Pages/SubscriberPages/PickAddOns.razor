@@ -16,9 +16,49 @@
 	<h2 class="Section-title">Personal info</h2>
 	@* <p class="required-fields">@requiredMessage</p> *@
 	<p class="additional-info">Add-ons help enhance your gaming experience.</p>
+	<div class="plan-option" id="online-service" @onclick="OnlineServiceClicked" style="@OnlineStyles">
+		<InputCheckbox class="addon-checkbox" @bind-Value="OnlineServiceChecked" @bind-Value:after="HandleOnlineService" />
+		<div class="plan-description">
+			<p class="plan-title">
+				Online Servce
+			</p>
+			<p class="addon-description">
+				Access to multiplayer games.
+			</p>
+		</div>
+		<p class="addon-amount">
+			+$<span>@OnlineServiceAmount</span>/<span>@perMoOrYr</span>
+		</p>
+	</div>
+
+	<div class="plan-option" id="larger-storage" @onclick="LargerStorageClicked" style="@LargerStyles">
+		<InputCheckbox class="addon-checkbox" @bind-Value="LargerStorageChecked" @bind-Value:after="HandleLargerStorage" />
+		<div class="plan-description">
+			<p class="plan-title">
+				Online Servce
+			</p>
+			<p class="addon-description">
+				Access to multiplayer games.
+			</p>
+		</div>
+		<p class="addon-amount">
+			+$<span>@LargerStorageAmount</span>/<span>@perMoOrYr</span>
+		</p>
+	</div>
+@* 	<p>@Subscriber.Name</p>
 	<p>@Subscriber.Email</p>
 	<p>@Subscriber.PhoneNumber</p>
+	<p>@Subscriber.PlanSelected</p> *@
 	<p>@Subscriber.TotalCost</p>
+	<p>@Subscriber.OnlineService</p>
+	<p>@Subscriber.LargerStorage</p>
+	<p>@Subscriber.Name</p>
+	<p>@Subscriber.Email</p>
+	<p>@Subscriber.PhoneNumber</p>
+	<p>@Subscriber.PlanSelected</p>
+	<p>@Subscriber.TotalCost</p>
+
+
 </div>
 
 @code {
@@ -136,4 +176,5 @@
 		    LargerStyles = "";
 		}
 	}
+
 }
