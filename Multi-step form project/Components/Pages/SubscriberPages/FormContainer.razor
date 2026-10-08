@@ -45,18 +45,24 @@ else if (Step == 2)
 			</div>
 			<div class="second-part">
 				<div class="addon-online" style="@OnlineStyles">	
-					<p>Online service</p>
+					<p class="addon-description-gray">Online service</p>
 					<p class="plan-title-not-bold"><span>+$</span>@OnlineServiceAmount /<span>@perMoOrYr</span></p>
 				</div>
 				<div class="addon-larger" style="@LargerStyles">	
-					<p>Larger storage</p>
+					<p class="addon-description-gray">Larger storage</p>
 					<p class="plan-title-not-bold"><span>+$</span>@LargerStorageAmount /<span>@perMoOrYr</span></p>
 				</div>
 				<div class="addon-customizable" style="@CustomizableStyles">	
-					<p>Customizable profile</p>
+					<p class="addon-description-gray">Customizable profile</p>
 					<p class="plan-title-not-bold"><span>+$</span>@CustomizableProfileAmount /<span>@perMoOrYr</span></p>
 				</div>
 			</div>
+		</div>
+		<div class="final-totally-cost">
+			<p class="addon-description-gray">@perMonthOrYear</p>
+			<p class="the-total-addedup"> 
+				<span>$</span>@theTotalfinalAmount /<span>@perMoOrYr</span>
+			</p>
 		</div>
 	@* <p>@Subscriber.Name</p>
 	<p>@Subscriber.Email</p>
@@ -98,12 +104,14 @@ else if (Step == 2)
 	public string aRequiredMessage = "";
 	public string aRequiredMessage2 = "";
 	public string perMoOrYr;
+	public string perMonthOrYear;
 	public int OnlineServiceAmount;
 	public int LargerStorageAmount;
 	public int CustomizableProfileAmount;
 	public string OnlineStyles;
 	public string LargerStyles;
 	public string CustomizableStyles;
+	public int theTotalfinalAmount;
 	public EmailAddressAttribute email = new EmailAddressAttribute();
 	//static PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.GetInstance();
 	// public bool abool = PhoneNumbers.Extensions.PhoneNumber.TryParse("jsss", "US", out PhoneNumbers.PhoneNumber var);
@@ -201,6 +209,7 @@ else if (Step == 2)
 			LargerStorageAmount = 2;
 			CustomizableProfileAmount = 2;
 			perMoOrYr = "mo";
+			perMonthOrYear = "Total (per month)";
 		}
 		else if (Subscriber.MonthlyOrYearly == "Yearly")
 		{
@@ -208,6 +217,7 @@ else if (Step == 2)
 			LargerStorageAmount = 2*10;
 			CustomizableProfileAmount = 2*10;
 			perMoOrYr = "yr";
+			perMonthOrYear = "Total (per year)";
 		} else
 		{
 
@@ -218,6 +228,7 @@ else if (Step == 2)
 		OnlineStyles = "";
 		LargerStyles = "";
 		CustomizableStyles = "";
+		theTotalfinalAmount = Subscriber.TotalCost + Subscriber.AddOnsCost;
 
 		if (Subscriber.OnlineService == 1)
 		{

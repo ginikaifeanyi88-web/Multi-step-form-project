@@ -301,10 +301,16 @@ input[type=checkbox]:checked {
 .change-plan-link {
     text-decoration: underline;
     color: hsl(231, 11%, 63%);
+    font-weight:bold;
+}
+
+.addon-description-gray {
+    color: hsl(231, 11%, 63%);
+   
 }
 
 .change-plan-link:hover {
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .first-part {
@@ -328,6 +334,17 @@ input[type=checkbox]:checked {
 .plan-title-not-bold {
     color: hsl(213, 96%, 18%);
     margin-bottom: 2px;
+}
+.final-totally-cost{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin: 17px 0;
+}
+.the-total-addedup {
+    font-size: 20px;
+    color: hsl(243, 100%, 62%);
+    font-weight:bold;
 }
 
 .blazor-error-boundary {
