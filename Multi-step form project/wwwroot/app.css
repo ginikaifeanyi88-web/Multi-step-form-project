@@ -275,9 +275,6 @@ input:checked + .slider:before {
 .addon-amount {
     color: hsl(231, 11%, 63%);
 }
-#larger-storage {
-    margin-top: 20px;
-}
 input[type=checkbox] {
     /* Double-sized Checkboxes */
     -ms-transform: scale(1.5); /* IE */

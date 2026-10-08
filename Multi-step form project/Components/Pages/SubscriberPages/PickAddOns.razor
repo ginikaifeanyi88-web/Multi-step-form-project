@@ -59,10 +59,11 @@
 			+$<span>@CustomizableProfileAmount</span>/<span>@perMoOrYr</span>
 		</p>
 	</div>
-
+	@* <p>Testing code</p>
 	<p>@Subscriber.OnlineService</p>
 	<p>@Subscriber.LargerStorage</p>
 	<p>@Subscriber.CustomizableProfile</p>
+	<p>@Subscriber.AddOnsCost</p> *@
 
 
 </div>
@@ -88,6 +89,7 @@
 		OnlineStylesIntializer();
 		LargerStylesIntializer();
 		CustomizableStylesIntializer();
+		createAddOnsTotal();
 	}
 
 	private void HandleOnlineService()
@@ -99,6 +101,7 @@
 		{
 			Subscriber.OnlineService = 0;
 		}
+		createAddOnsTotal();
 	}
 	public void HandleMonthlyOrYearly()
 	{
@@ -106,12 +109,14 @@
 		{
 			OnlineServiceAmount = 1;
 			LargerStorageAmount = 2;
+			CustomizableProfileAmount = 2;
 			perMoOrYr = "mo";
 		}
 		else if (Subscriber.MonthlyOrYearly == "Yearly")
 		{
 			OnlineServiceAmount = 1*10;
 			LargerStorageAmount = 2*10;
+			CustomizableProfileAmount = 2 * 10;
 			perMoOrYr = "yr";
 		}
 	}
@@ -155,6 +160,7 @@
 		{
 			Subscriber.LargerStorage = 0;
 		}
+		createAddOnsTotal();
 	}
 
 	private void LargerStorageClicked()
@@ -183,11 +189,11 @@
 		else
 		{
 			LargerStorageChecked = false;
-		    LargerStyles = "";
+			LargerStyles = "";
 		}
 	}
 
-	
+
 	private void HandleCustomizableProfile()
 	{
 		if (CustomizableProfileChecked == true)
@@ -198,6 +204,7 @@
 		{
 			Subscriber.CustomizableProfile = 0;
 		}
+		createAddOnsTotal();
 	}
 
 	private void CustomizableProfileClicked()
@@ -228,6 +235,25 @@
 			CustomizableProfileChecked = false;
 			CustomizableStyles = "";
 		}
+	}
+
+	private void createAddOnsTotal()
+	{
+		Subscriber.AddOnsCost = 0;
+		int addOnAmount = 0;
+		if (Subscriber.OnlineService == 1)
+		{
+			addOnAmount += OnlineServiceAmount;
+		}
+		if (Subscriber.LargerStorage == 1)
+		{
+			addOnAmount += LargerStorageAmount;
+		}
+		if (Subscriber.CustomizableProfile == 1)
+		{
+			addOnAmount += CustomizableProfileAmount;
+		}
+		Subscriber.AddOnsCost = addOnAmount;
 	}
 
 }
