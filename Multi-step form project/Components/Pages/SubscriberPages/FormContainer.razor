@@ -31,13 +31,17 @@ else if (Step == 2)
 </div>
 <div class="white-container">
 	<h2 class="Section-title">Finishing up</h2>
-	<p>@Subscriber.Name</p>
+		<p class="additional-info">Double-check everything looks OK before confirming.</p>
+		<div class="choices-summary">
+			<p class="plan-title">@Subscriber.PlanSelected (<span>@Subscriber.MonthlyOrYearly</span>)</p>
+		</div>
+	@* <p>@Subscriber.Name</p>
 	<p>@Subscriber.Email</p>
 	<p>@Subscriber.PhoneNumber</p>
 	<p>@Subscriber.PlanSelected</p>
 	<p>@Subscriber.MonthlyOrYearly</p>
 	<P>@Subscriber.TotalCost</P>
-	<p>@Subscriber.AddOnsCost</p>
+	<p>@Subscriber.AddOnsCost</p> *@
 </div>
 }
 
