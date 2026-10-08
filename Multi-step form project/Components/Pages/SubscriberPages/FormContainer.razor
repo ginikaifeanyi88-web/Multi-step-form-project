@@ -46,15 +46,15 @@ else if (Step == 2)
 			<div class="second-part">
 				<div class="addon-online" style="@OnlineStyles">	
 					<p>Online service</p>
-					<p><span>+$</span>@OnlineServiceAmount /<span>@perMoOrYr</span></p>
+					<p class="plan-title-not-bold"><span>+$</span>@OnlineServiceAmount /<span>@perMoOrYr</span></p>
 				</div>
 				<div class="addon-larger" style="@LargerStyles">	
 					<p>Larger storage</p>
-					<p><span>+$</span>@LargerStorageAmount /<span>@perMoOrYr</span></p>
+					<p class="plan-title-not-bold"><span>+$</span>@LargerStorageAmount /<span>@perMoOrYr</span></p>
 				</div>
 				<div class="addon-customizable" style="@CustomizableStyles">	
 					<p>Customizable profile</p>
-					<p><span>+$</span>@CustomizableProfileAmount /<span>@perMoOrYr</span></p>
+					<p class="plan-title-not-bold"><span>+$</span>@CustomizableProfileAmount /<span>@perMoOrYr</span></p>
 				</div>
 			</div>
 		</div>
@@ -221,15 +221,15 @@ else if (Step == 2)
 
 		if (Subscriber.OnlineService == 1)
 		{
-			OnlineStyles = "display:block";
+			OnlineStyles = "display:flex;flex-direction:row;justify-content:space-between;margin-top:5px";
 		}
 		if (Subscriber.LargerStorage == 1)
 		{
-			LargerStyles = "display:block";
+			LargerStyles = "display:flex;flex-direction:row;justify-content:space-between;margin-top:5px";
 		}
 		if (Subscriber.CustomizableProfile == 1)
 		{
-			CustomizableStyles = "display:block";
+			CustomizableStyles = "display:flex;flex-direction:row;justify-content:space-between;margin-top:5px";
 		}
 
 	}

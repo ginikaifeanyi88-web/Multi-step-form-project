@@ -308,10 +308,12 @@ input[type=checkbox]:checked {
 }
 
 .first-part {
-    display:flex;
-    flex-direction:row;
-    justify-content:space-between;
-    align-items:center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid hsl(231, 11%, 63%);
+    padding-bottom:10px;
 }
 .addon-online{
     display:none;
@@ -321,6 +323,11 @@ input[type=checkbox]:checked {
 }
 .addon-customizable {
     display: none;
+}
+
+.plan-title-not-bold {
+    color: hsl(213, 96%, 18%);
+    margin-bottom: 2px;
 }
 
 .blazor-error-boundary {
