@@ -21,6 +21,7 @@ else if (Step == 2)
 	<PickAddOns/>
 } else if (Step == 4)
 {
+	checkMonthlyorYearly();
 	<div class="mobile-header">
 </div>
 <div class="page-numbers">
@@ -38,7 +39,7 @@ else if (Step == 2)
 					<p class="plan-title">@Subscriber.PlanSelected (<span>@Subscriber.MonthlyOrYearly</span>)</p>
 					<p class="change-plan-link" @onclick="HandleChangePlan">Change</p>
 				</div>
-				<div class="plan-title">@Subscriber.TotalCost</div>
+				<div class="plan-title"><span>$</span>@Subscriber.TotalCost /<span>@perMoOrYr</span></div>
 			</div>
 		</div>
 	@* <p>@Subscriber.Name</p>
@@ -63,7 +64,7 @@ else if (Step == 2)
 		}
 		@if (Step == 4)
 		{
-
+			
 		}
 		else
 		{
@@ -80,9 +81,14 @@ else if (Step == 2)
 	public string pageNumberColor = "background-color:hsl(206, 94%, 87%);color:hsl(213, 96%, 18%)";
 	public string aRequiredMessage = "";
 	public string aRequiredMessage2 = "";
+	public string perMoOrYr;
 	public EmailAddressAttribute email = new EmailAddressAttribute();
 	//static PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.GetInstance();
 	// public bool abool = PhoneNumbers.Extensions.PhoneNumber.TryParse("jsss", "US", out PhoneNumbers.PhoneNumber var);
+	protected override void OnInitialized()
+	{
+		
+	}
 
 	public void Next()
 	{
@@ -163,5 +169,20 @@ else if (Step == 2)
 	{
 		Step = 2;
 		StateHasChanged();
+	}
+
+	private void checkMonthlyorYearly()
+	{
+		if (Subscriber.MonthlyOrYearly == "Monthly")
+		{
+			perMoOrYr = "mo";
+		}
+		else if (Subscriber.MonthlyOrYearly == "Yearly")
+		{
+			perMoOrYr = "yr";
+		} else
+		{
+			
+		}
 	}
 }
