@@ -33,7 +33,12 @@ else if (Step == 2)
 	<h2 class="Section-title">Finishing up</h2>
 		<p class="additional-info">Double-check everything looks OK before confirming.</p>
 		<div class="choices-summary">
-			<p class="plan-title">@Subscriber.PlanSelected (<span>@Subscriber.MonthlyOrYearly</span>)</p>
+			<div class="first-part">
+				<div class="plan-selected-final">
+					<p class="plan-title">@Subscriber.PlanSelected (<span>@Subscriber.MonthlyOrYearly</span>)</p>
+					<p class="change-plan-link" @onclick="HandleChangePlan">Change</p>
+				</div>
+			</div>
 		</div>
 	@* <p>@Subscriber.Name</p>
 	<p>@Subscriber.Email</p>
@@ -103,7 +108,7 @@ else if (Step == 2)
 			aRequiredMessage2 = "Select a plan!";
 		} else if (Step == 4)
 		{
-			
+
 		} else
 		{
 
@@ -151,5 +156,11 @@ else if (Step == 2)
 
 		}
 		return itIsFine;
+	}
+
+	private void HandleChangePlan()
+	{
+		Step = 2;
+		StateHasChanged();
 	}
 }
