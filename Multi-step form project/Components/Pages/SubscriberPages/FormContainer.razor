@@ -21,7 +21,24 @@ else if (Step == 2)
 	<PickAddOns/>
 } else if (Step == 4)
 {
-	<OrderSummary/>
+	<div class="mobile-header">
+</div>
+<div class="page-numbers">
+	<div class="page-number">1</div>
+	<div class="page-number">2</div>
+	<div class="page-number">3</div>
+	<div class="page-number" style="@pageNumberColor">4</div>
+</div>
+<div class="white-container">
+	<h2 class="Section-title">Finishing up</h2>
+	<p>@Subscriber.Name</p>
+	<p>@Subscriber.Email</p>
+	<p>@Subscriber.PhoneNumber</p>
+	<p>@Subscriber.PlanSelected</p>
+	<p>@Subscriber.MonthlyOrYearly</p>
+	<P>@Subscriber.TotalCost</P>
+	<p>@Subscriber.AddOnsCost</p>
+</div>
 }
 
 <div class="next-and-prev">
@@ -50,6 +67,7 @@ else if (Step == 2)
 	private Subscriber? Subscriber { get; set; } 
 
 	public int Step { get; set; } = 1;
+	public string pageNumberColor = "background-color:hsl(206, 94%, 87%);color:hsl(213, 96%, 18%)";
 	public string aRequiredMessage = "";
 	public string aRequiredMessage2 = "";
 	public EmailAddressAttribute email = new EmailAddressAttribute();
