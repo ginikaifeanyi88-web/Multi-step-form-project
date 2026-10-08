@@ -22,6 +22,8 @@ else if (Step == 2)
 } else if (Step == 4)
 {
 	checkMonthlyorYearly();
+	viewChosenAddOns();
+	
 	<div class="mobile-header">
 </div>
 <div class="page-numbers">
@@ -40,6 +42,20 @@ else if (Step == 2)
 					<p class="change-plan-link" @onclick="HandleChangePlan">Change</p>
 				</div>
 				<div class="plan-title"><span>$</span>@Subscriber.TotalCost /<span>@perMoOrYr</span></div>
+			</div>
+			<div class="second-part">
+				<div class="addon-online" style="@OnlineStyles">	
+					<p>Online service</p>
+					<p><span>+$</span>@OnlineServiceAmount /<span>@perMoOrYr</span></p>
+				</div>
+				<div class="addon-larger" style="@LargerStyles">	
+					<p>Larger storage</p>
+					<p><span>+$</span>@LargerStorageAmount /<span>@perMoOrYr</span></p>
+				</div>
+				<div class="addon-customizable" style="@CustomizableStyles">	
+					<p>Customizable profile</p>
+					<p><span>+$</span>@CustomizableProfileAmount /<span>@perMoOrYr</span></p>
+				</div>
 			</div>
 		</div>
 	@* <p>@Subscriber.Name</p>
@@ -82,12 +98,18 @@ else if (Step == 2)
 	public string aRequiredMessage = "";
 	public string aRequiredMessage2 = "";
 	public string perMoOrYr;
+	public int OnlineServiceAmount;
+	public int LargerStorageAmount;
+	public int CustomizableProfileAmount;
+	public string OnlineStyles;
+	public string LargerStyles;
+	public string CustomizableStyles;
 	public EmailAddressAttribute email = new EmailAddressAttribute();
 	//static PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.GetInstance();
 	// public bool abool = PhoneNumbers.Extensions.PhoneNumber.TryParse("jsss", "US", out PhoneNumbers.PhoneNumber var);
 	protected override void OnInitialized()
 	{
-		
+
 	}
 
 	public void Next()
@@ -175,14 +197,40 @@ else if (Step == 2)
 	{
 		if (Subscriber.MonthlyOrYearly == "Monthly")
 		{
+			OnlineServiceAmount = 1;
+			LargerStorageAmount = 2;
+			CustomizableProfileAmount = 2;
 			perMoOrYr = "mo";
 		}
 		else if (Subscriber.MonthlyOrYearly == "Yearly")
 		{
+			OnlineServiceAmount = 1*10;
+			LargerStorageAmount = 2*10;
+			CustomizableProfileAmount = 2*10;
 			perMoOrYr = "yr";
 		} else
 		{
-			
+
 		}
+	}
+	private void viewChosenAddOns()
+	{
+		OnlineStyles = "";
+		LargerStyles = "";
+		CustomizableStyles = "";
+
+		if (Subscriber.OnlineService == 1)
+		{
+			OnlineStyles = "display:block";
+		}
+		if (Subscriber.LargerStorage == 1)
+		{
+			LargerStyles = "display:block";
+		}
+		if (Subscriber.CustomizableProfile == 1)
+		{
+			CustomizableStyles = "display:block";
+		}
+
 	}
 }
