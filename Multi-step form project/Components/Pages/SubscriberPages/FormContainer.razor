@@ -86,7 +86,7 @@ else if (Step == 2)
 		}
 		@if (Step == 4)
 		{
-			<button class="confirm-button">Confirm</button>
+			<button class="confirm-button" @onclick="AddSubscriber">Confirm</button>
 		}
 		else
 		{
@@ -243,5 +243,12 @@ else if (Step == 2)
 			CustomizableStyles = "display:flex;flex-direction:row;justify-content:space-between;margin-top:5px";
 		}
 
+	}
+	private async Task AddSubscriber()
+	{
+		using var context = DbFactory.CreateDbContext();
+		context.Subscriber.Add(Subscriber);
+		await context.SaveChangesAsync();
+		NavigationManager.NavigateTo("/success");
 	}
 }
