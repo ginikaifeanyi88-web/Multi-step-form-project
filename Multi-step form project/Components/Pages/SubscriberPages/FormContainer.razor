@@ -19,12 +19,29 @@ else if (Step == 2)
 } else if (Step == 3)
 {
 	<PickAddOns/>
+} else if (Step == 4)
+{
+	<OrderSummary/>
 }
 
 <div class="next-and-prev">
 	<div class="next-and-prev-button-container">
-		<button class="go-back-button" @onclick="Prev">Go Back</button>
-		<button class="next-step-button" @onclick="Next">Next Step</button>
+		@if (Step == 1)
+		{
+
+		}
+		else
+		{
+			<button class="go-back-button" @onclick="Prev">Go Back</button>
+		}
+		@if (Step == 4)
+		{
+
+		}
+		else
+		{
+			<button class="next-step-button" @onclick="Next">Next Step</button>
+		}
 	</div>
 </div>
 
@@ -62,8 +79,10 @@ else if (Step == 2)
 		else if (Step == 2 && (Subscriber.PlanSelected == null))
 		{
 			aRequiredMessage2 = "Select a plan!";
-		}
-		else
+		} else if (Step == 4)
+		{
+			
+		} else
 		{
 
 			aRequiredMessage = "";
