@@ -6,13 +6,10 @@
 <PageTitle>Pick Add Ons</PageTitle>
 <div class="mobile-header">
 </div>
-<div class="page-numbers">
-	<div class="page-number">1</div>
-	<div class="page-number">2</div>
-	<div class="page-number" style="@pageNumberColor">3</div>
-	<div class="page-number">4</div>
-</div>
+<PageNumber thePageNumber="3" TopOrSide="Top"/>
 <div class="white-container">
+	<div class="side-image"></div>
+	<div class="white-container-content">
 	<h2 class="Section-title">Personal info</h2>
 	<p class="additional-info">Add-ons help enhance your gaming experience.</p>
 	<div class="plan-option" id="online-service" @onclick="OnlineServiceClicked" style="@OnlineStyles">
@@ -66,6 +63,7 @@
 	<p>@Subscriber.AddOnsCost</p> *@
 
 
+</div>
 </div>
 
 @code {

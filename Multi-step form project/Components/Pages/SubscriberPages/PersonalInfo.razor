@@ -9,13 +9,10 @@
 <div class="mobile-header">
 	
 </div>
-<div class="page-numbers">
-	<div class="page-number" style="@pageNumberColor">1</div>
-	<div class="page-number">2</div>
-	<div class="page-number">3</div>
-	<div class="page-number">4</div>
-</div>
+<PageNumber thePageNumber="1" TopOrSide="Top"/>
 <div class="white-container">
+	<div class="side-image"></div>
+	<div class="white-container-content">
 	<h2 class="Section-title">Personal info</h2>
 	<p class="required-fields">@requiredMessage</p>
 	<p class="additional-info">  Please provide your name, email address, and phone number.</p>
@@ -33,6 +30,7 @@
 	</div>
 	@* Testing code *@
 	@* <p>@PhoneNumberUtil.GetInstance().IsValidNumber(PhoneNumberUtil.GetInstance().Parse("+26772981057", "US"))</p> *@
+	</div>
 </div>
 
 @code {

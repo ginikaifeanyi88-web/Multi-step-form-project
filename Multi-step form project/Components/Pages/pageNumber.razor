@@ -1,0 +1,87 @@
+﻿<div class="@theClasses">
+	<div class="page-number-container">
+		<div class="page-number" style="@pageNumberColor1">1</div>
+		<div class="page-number-info">
+			<p class="step-name">STEP 1</p>
+			<p class="step-description">YOUR INFO</p>
+		</div>
+	</div>
+	<div class="page-number-container">
+		<div class="page-number" style="@pageNumberColor2">2</div>
+		<div class="page-number-info">
+			<p class="step-name">STEP 2</p>
+			<p class="step-description">SELECT PLAN</p>
+		</div>
+	</div>
+	<div class="page-number-container">
+		<div class="page-number" style="@pageNumberColor3">3</div>
+		<div class="page-number-info">
+			<p class="step-name">STEP 3</p>
+			<p class="step-description">ADD-ONS</p>
+		</div>
+	</div>
+	<div class="page-number-container">
+		<div class="page-number" style="@pageNumberColor4">4</div>
+		<div class="page-number-info">
+			<p class="step-name">STEP 4</p>
+			<p class="step-description">SUMMARY</p>
+		</div>
+	</div>
+
+</div>
+
+@code {
+
+	public string pageNumberColor1;
+	public string pageNumberColor2;
+	public string pageNumberColor3;
+	public string pageNumberColor4;
+	public string theClasses;
+
+	[Parameter]
+	public int thePageNumber { get; set; }
+
+	[Parameter]
+	public string TopOrSide { get; set; }
+
+	protected override void OnInitialized()
+	{
+		setStyle();
+		visibleOrNot();
+	}
+	public void setStyle()
+	{
+		pageNumberColor1 = "";
+		pageNumberColor2 = "";
+		pageNumberColor3 = "";
+		pageNumberColor4 = "";
+		if (thePageNumber == 1)
+		{
+			pageNumberColor1 = "background-color:hsl(206, 94%, 87%);color:hsl(213, 96%, 18%)";
+		}
+		if (thePageNumber == 2)
+		{
+			pageNumberColor2 = "background-color:hsl(206, 94%, 87%);color:hsl(213, 96%, 18%)";
+		}
+		if (thePageNumber == 3)
+		{
+			pageNumberColor3 = "background-color:hsl(206, 94%, 87%);color:hsl(213, 96%, 18%)";
+		}
+		if (thePageNumber == 4)
+		{
+			pageNumberColor4 = "background-color:hsl(206, 94%, 87%);color:hsl(213, 96%, 18%)";
+		}
+	}
+	public void visibleOrNot()
+	{
+		if (TopOrSide == "Top")
+		{
+			theClasses = "page-numbers top-page-number";
+		}
+		if (TopOrSide == "Side")
+		{
+			theClasses = "page-numbers side-page-number";
+		}
+
+	}
+}

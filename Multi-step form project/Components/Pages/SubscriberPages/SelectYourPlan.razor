@@ -5,13 +5,10 @@
 <PageTitle>Select Your Plan</PageTitle>
 <div class="mobile-header">
 </div>
-<div class="page-numbers">
-	<div class="page-number">1</div>
-	<div class="page-number" style="@pageNumberColor">2</div>
-	<div class="page-number">3</div>
-	<div class="page-number">4</div>
-</div>
+<PageNumber thePageNumber="2" TopOrSide="Top"/>
 <div class="white-container">
+	<div class="side-image"></div>
+	<div class="white-container-content">
 	<h2 class="Section-title">Select Your Plan</h2>
 	<p class="required-fields">@requiredMessage</p>
 	<p class="additional-info"> You have the option of monthly or yearly billing.</p>
@@ -26,41 +23,43 @@
 				<span class="yearly-version">2 months free</span>
 			</p>
 		</div>
+		</div>
+		<div class="plan-option" id="advanced-choice" @onclick="HandleAdvanced" style="@AdvancedStyles">
+			<img src="/images/icon-advanced.svg" />
+			<div class="plan-description">
+				<p class="plan-title">
+					Advanced
+				</p>
+				<p class="plan-amount">
+					$<span>@advancedPrice</span>/<span>@perMoOrYr</span>
+					<span class="yearly-version">2 months free</span>
+				</p>
+			</div>
+		</div>
+		<div class="plan-option" id="pro-choice" @onclick="HandlePro" style="@ProStyles">
+			<img src="/images/icon-pro.svg" />
+			<div class="plan-description">
+				<p class="plan-title">
+					Pro
+				</p>
+				<p class="plan-amount">
+					$<span>@proPrice</span>/<span>@perMoOrYr</span>
+					<span class="yearly-version">2 months free</span>
+				</p>
+			</div>
+		</div>
+		<div class="monthly-or-yearly-container">
+			<p class="Monthly-title">Monthly</p>
+
+			<label class="switch">
+				<InputCheckbox @bind-Value="MonthlyOrYearly" @bind-Value:after="HandleMonthlyAndYearly" />
+				<span class="slider round"></span>
+			</label>
+			<p class="Yearly-title">Yearly</p>
+		</div>
 	</div>
 
-	<div class="plan-option" id="advanced-choice" @onclick="HandleAdvanced" style="@AdvancedStyles">
-		<img src="/images/icon-advanced.svg" />
-		<div class="plan-description">
-			<p class="plan-title">
-				Advanced
-			</p>
-			<p class="plan-amount">
-				$<span>@advancedPrice</span>/<span>@perMoOrYr</span>
-				<span class="yearly-version">2 months free</span>
-			</p>
-		</div>
-	</div>
-	<div class="plan-option" id="pro-choice" @onclick="HandlePro" style="@ProStyles">
-		<img src="/images/icon-pro.svg" />
-		<div class="plan-description">
-			<p class="plan-title">
-				Pro
-			</p>
-			<p class="plan-amount">
-				$<span>@proPrice</span>/<span>@perMoOrYr</span>
-				<span class="yearly-version">2 months free</span>
-			</p>
-		</div>
-	</div>
-	<div class="monthly-or-yearly-container">
-		<p class="Monthly-title">Monthly</p>
-			
-		<label class="switch">
-			<InputCheckbox @bind-Value="MonthlyOrYearly" @bind-Value:after="HandleMonthlyAndYearly"/>
-			<span class="slider round"></span>
-		</label>
-		<p class="Yearly-title">Yearly</p>
-	</div>
+	
 
 	@*Testing code*@
 
@@ -68,8 +67,6 @@
 	<p>@MonthlyOrYearly</p>
 	<p>@Subscriber.MonthlyCost</p> *@
 </div>
-
-
 
 @code {
 	[CascadingParameter]

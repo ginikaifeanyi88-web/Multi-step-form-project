@@ -44,12 +44,20 @@ h1:focus {
     border-radius: 10px;
     box-shadow: 0px 10px 10px hsl(219, 35%, 86%);
 }
-.required-fields{
-    color:red;
+
+.side-image{
+    display:none;
+}
+.required-fields {
+    color: red;
 }
 .additional-info {
     margin-top: 15px;
     color: hsl(229, 24%, 87%);
+}
+
+.page-number-info{
+    display:none;
 }
 
 .name-container, .email-container, .phone-number-container {
@@ -129,6 +137,9 @@ input::placeholder {
     width:240px;
     margin:0 auto;
     margin-top:30px;
+}
+.side-page-number{
+    display:none;
 }
 
 .page-number {
@@ -380,4 +391,50 @@ input[type=checkbox]:checked {
 .blazor-error-boundary::after {
             content: "An error has occurred."
  }
+
+/* Desktop view */
+@media only screen and (min-width:950px) {
+
+    .white-container {
+        min-width: 900px;
+        max-width: 1400px;
+        display:flex;
+      
+    }
+
+    .white-container-content{
+        margin-top:60px;
+    }
+
+    .mobile-header {
+        display: none;
+    }
+    .side-image {
+        display: block;
+        width: 241px;
+        border-bottom-right-radius:10px;
+        border-bottom-left-radius:10px;
+        border-top-right-radius:10px;
+        height: 500px;
+        background: url(/images/bg-sidebar-desktop.svg) no-repeat;
+        margin-right: 80px;
+    }
+
+    .page-numbers {
+        flex-direction: column;
+        justify-content: space-around;
+        width: 240px;
+        margin: 0;
+    }
+    .top-page-number {
+        display: none;
+    }
+
+    .page-number-info{
+        display:block;
+    }
+    .page-number-container{
+        display:flex;
+    }
+}
 
