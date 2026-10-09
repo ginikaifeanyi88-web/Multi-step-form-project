@@ -459,5 +459,29 @@ input[type=checkbox]:checked {
     .success-paragraph {
         width: 340px;
     }
+
+    .next-and-prev {
+        position: relative;
+        width: 400px;
+        justify-content: center;
+        bottom:65px;
+       /*left:42vw;*/
+       left:46vw;
+    }
+    .go-back-button {
+
+        padding: 15px;
+        font-size:17px;
+    }
+
+    .next-step-button {
+
+        padding: 15px;
+        font-size:17px;
+    }
+    .confirm-button {
+        padding: 15px;
+        font-size: 17px;
+    }
 }
 
