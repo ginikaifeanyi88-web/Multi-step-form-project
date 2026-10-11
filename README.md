@@ -31,10 +31,6 @@ Users should be able to:
   - The email address is not formatted correctly
   - A step is submitted, but no selection has been made
 
-### Screenshot
-
-![](./screenshot.jpg)
-
 ### Links
 
 - Live Site URL: [Multi-step form](https://multistepform101.runasp.net/)
