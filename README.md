@@ -38,6 +38,7 @@ Users should be able to:
 ### Links
 
 - Live Site URL: [Multi-step form](https://multistepform101.runasp.net/)
+**Note: ** The the code on this Github repository and the one used to host the website are different. You will have to tweak the code after you download it on Github to work  with a MS SQL database on your system.
 
 ## My process
 
