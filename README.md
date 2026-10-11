@@ -47,6 +47,7 @@ Users should be able to:
 - C#
 - Blazor
 - Microsoft SQL Server
+- libphone library
 - Mobile-first workflow
 
 
