@@ -245,6 +245,10 @@ else if (Step == 2)
 		using var context = DbFactory.CreateDbContext();
 		context.Subscriber.Add(Subscriber);
 		await context.SaveChangesAsync();
+		Subscriber.ClearData();
 		NavigationManager.NavigateTo("/success");
 	}
+
+	
+
 }

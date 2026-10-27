@@ -16,5 +16,19 @@ namespace Multi_step_form_project.Modules
         public int TotalCost { get; set; }
         public int AddOnsCost { get; set; }
 
+        public void ClearData()
+        {
+            this.Name = null;
+            this.Email = null;
+            this.PhoneNumber = null;
+            this.PlanSelected = null;
+            this.MonthlyOrYearly= null;
+            this.OnlineService = default;
+            this.LargerStorage = default;
+            this.CustomizableProfile = default;
+            this.TotalCost = default;
+            this.AddOnsCost = default;
+        }
+
     }
 }

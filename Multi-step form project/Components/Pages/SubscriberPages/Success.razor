@@ -16,7 +16,7 @@
 	<div class="white-container-content">
 	<img src="/images/icon-thank-you.svg" class="success-check"/>
 	<h2 class="Section-title success-title">Thank you!</h2>
-	<p class="additional-info success-paragraph">Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com.</p>
+	<p class="additional-info success-paragraph">Thanks for confirming your subscription! You will be redirected in a moment....</p>
 	
 </div>
 </div>
@@ -25,4 +25,14 @@
 	[CascadingParameter]
 	private Subscriber? Subscriber { get; set; }
 	public string pageNumberColor = "background-color:hsl(206, 94%, 87%);color:hsl(213, 96%, 18%)";
+	protected override void OnInitialized()
+	{
+
+		NavigateHome();
+	}
+	private async Task NavigateHome()
+	{
+		await Task.Delay(5000);
+		NavigationManager.NavigateTo("/");
+	}
 }
