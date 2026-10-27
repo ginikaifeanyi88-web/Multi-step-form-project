@@ -31,13 +31,11 @@ Users should be able to:
   - The email address is not formatted correctly
   - A step is submitted, but no selection has been made
 
-### Screenshot
-
-![](./screenshot.jpg)
-
 ### Links
 
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [Multi-step form](https://multistepform101.runasp.net/)
+
+**Note: ** The the code on this Github repository and the one used to host the website are different. You will have to tweak the code after you download it on Github to work  with a MS SQL database on your system.
 
 ## My process
 
@@ -49,6 +47,7 @@ Users should be able to:
 - C#
 - Blazor
 - Microsoft SQL Server
+- libphone library
 - Mobile-first workflow
 
 
